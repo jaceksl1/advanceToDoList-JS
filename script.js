@@ -36,6 +36,8 @@ const prepareDOMEvents = () => {
   $addBtn.addEventListener("click", addNewTask);
   $todoInput.addEventListener("keyup", enterCheck);
   $ulList.addEventListener("click", checkClick);
+  $addPopupBtn.addEventListener("click", changeToDo);
+  $closeTodoBtn.addEventListener("click", closePopup);
 };
 
 const addNewTask = () => {
@@ -88,10 +90,44 @@ const createToolsArea = () => {
 const checkClick = (e) => {
   if (e.target.classList.value !== "") {
     if (e.target.closest("button").classList.contains("complete")) {
+      e.target.closest("li").classList.toggle("completed");
+      e.target.closest("button").classList.toggle("completed");
     } else if (e.target.closest("button").classList.contains("edit")) {
+      editTask(e);
     } else if (e.target.closest("button").classList.contains("delete")) {
+      deleteTask(e);
     }
   }
+};
+
+const editTask = (e) => {
+  const oldToDo = e.target.closest("li").id;
+  $editedTodo = document.getElementById(oldToDo);
+  $popupInput.value = $editedTodo.firstChild.textContent;
+  $popup.style.display = "flex";
+};
+
+const changeToDo = () => {
+  if ($popupInput.value !== "") {
+    $editedTodo.firstChild.textContent = $popupInput.value;
+    $popup.style.display = "none";
+    $popupInfo.innerText = "";
+  } else {
+    $popupInfo.innerText = "You have to put some value!";
+  }
+};
+
+const deleteTask = (e) => {
+  const deleteToDo = e.target.closest("li");
+  deleteToDo.remove();
+  if ($allTasks.length === 0) {
+    $alertInfo.innerText = "No tasks on the list.";
+  }
+};
+
+const closePopup = () => {
+  popup.style.display = "none";
+  $popupInfo.innerText = "";
 };
 
 document.addEventListener("DOMContentLoaded", main);

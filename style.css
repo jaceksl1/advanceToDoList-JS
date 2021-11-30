@@ -17,7 +17,7 @@ body {
   justify-content: center;
   margin-top: 120px;
   font-family: "Montserrat", sans-serif;
-  background-color: #525355;
+  background-color: #040d20;
 }
 
 h1 {
@@ -30,7 +30,7 @@ h1 {
   width: 500px;
   text-align: center;
   background: #fff;
-  box-shadow: 4px 4px 5px rgba(82, 82, 82, 0.4);
+  box-shadow: 0 4px 15px rgba(184, 181, 181, 0.4);
   border-radius: 5px;
 }
 
