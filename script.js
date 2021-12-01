@@ -6,7 +6,7 @@ let $addBtn; // add btn
 let $ulList; // our list of to do <ul><li>
 let $newTask; // new task in <li>
 let $allTasks; // whole list of tasks <li>
-let $idNumber = 0; // ID for every created new task
+let $idNumber = Date.now(); // ID for every created new task
 let $popup; //getting popup
 let $popupInfo; // alert in popup about empty txt
 let $editedTodo; // edited Todo
@@ -42,16 +42,17 @@ const prepareDOMEvents = () => {
 
 const addNewTask = () => {
   if ($todoInput.value !== "") {
-    $idNumber++;
     $newTask = document.createElement("li");
     $newTask.innerText = $todoInput.value;
     $newTask.setAttribute("id", `todo-${$idNumber}`);
     $ulList.appendChild($newTask);
 
+    createToolsArea();
+
     $todoInput.value = "";
     $alertInfo.innerText = "";
 
-    createToolsArea();
+    localStorage.setItem("tasks", $newTask.innerHTML);
   } else {
     $alertInfo.innerText = "Write task info!";
   }
@@ -67,14 +68,13 @@ const createToolsArea = () => {
   const divToolsPanel = document.createElement("div");
   divToolsPanel.classList.add("tools");
   $newTask.appendChild(divToolsPanel);
-
   const completeBtn = document.createElement("button");
   completeBtn.classList.add("complete");
   completeBtn.innerHTML = `<i class="fas fa-check"></i>`;
 
   const editBtn = document.createElement("button");
   editBtn.classList.add("edit");
-  editBtn.innerHTML = "EDIT";
+  editBtn.innerHTML = `<i class="far fa-edit fa-lg"></i>`;
 
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("delete");
@@ -126,8 +126,14 @@ const deleteTask = (e) => {
 };
 
 const closePopup = () => {
-  popup.style.display = "none";
+  $popup.style.display = "none";
   $popupInfo.innerText = "";
 };
 
 document.addEventListener("DOMContentLoaded", main);
+
+const saved = localStorage.getItem("tasks");
+
+if (saved) {
+  $ulList.innerHTML = saved;
+}

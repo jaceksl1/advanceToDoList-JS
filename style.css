@@ -22,12 +22,12 @@ body {
 
 h1 {
   margin-bottom: 20px;
-  color: var(--light);
+  color: #fff;
   text-transform: uppercase;
 }
 
 .todo {
-  width: 500px;
+  width: 90%;
   text-align: center;
   background: #fff;
   box-shadow: 0 4px 15px rgba(184, 181, 181, 0.4);
@@ -46,7 +46,7 @@ h1 {
   margin-right: 20px;
   border: none;
   border-radius: 5px;
-  color: var(--light-dark);
+  color: var(--deep-dark);
   background-color: var(--light);
 }
 
@@ -109,7 +109,7 @@ h1 {
 
 .edit {
   font-weight: bold;
-  color: rgb(15, 179, 69);
+  color: rgb(0, 0, 0);
 }
 
 .delete {
@@ -132,7 +132,7 @@ h1 {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 800px;
+  width: 300px;
   color: var(--light);
   background-color: var(--light-dark);
   border-radius: 5px;
@@ -167,7 +167,7 @@ h1 {
 .popup-btn {
   display: inline-block;
   width: 30%;
-  padding: 10px 22px;
+  padding: 10px;
   margin: 20px;
   border: none;
   border-radius: 5px;
@@ -176,11 +176,6 @@ h1 {
   text-transform: uppercase;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-}
-
-.popup-btn:hover {
-  color: #fff;
-  background-color: var(--light-blue);
 }
 
 @media screen and (min-width: 760px) {
@@ -208,6 +203,11 @@ h1 {
 
   .add-btn {
     padding: 10px 22px;
+  }
+
+  .add-btn:hover {
+    color: #fff;
+    background-color: var(--light-blue);
   }
 
   .todo-list {
@@ -260,5 +260,9 @@ h1 {
     width: 30%;
     padding: 10px 22px;
     margin: 20px;
+  }
+  .popup-btn:hover {
+    color: #fff;
+    background-color: var(--light-blue);
   }
 }
